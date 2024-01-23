@@ -14,28 +14,34 @@ public class Wazo : MonoBehaviour
     [SerializeField] TMP_Text scoreText;
     [SerializeField] GameObject paneLose;
     [SerializeField] float rotationPower;
-    int score;
+    public int score;
+    bool isDead = false;
     public event Action OnDeath;
     private void Update()
     {
         if (Input.GetKeyDown("space"))
         {
-            rd.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); //saut 
+            rd.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); // saut
+            if (!isDead) {AudioManager.Instance.PlayFly(); }
+
         }
         this.transform.rotation = Quaternion.Euler(0,0,rd.velocity.y * rotationPower);
     }
 
-    void Kill()
+    void Kill() // message "Kill" reçu
     {
-        //message "Kill" reçu
+        isDead = true;
+        AudioManager.Instance.PlayDie();
         paneLose.SetActive(true);
         Time.timeScale = 0; // Pause le temps
     }
-
     void ScoreUp()
-    {        
+    {
+        AudioManager.Instance.PlayGainScore();
         print("AUGMENTE");
         score++;
         scoreText.text = "SCORE : " + score;
     }
+
+    
 }

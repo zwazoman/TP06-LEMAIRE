@@ -5,33 +5,41 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] StartGame _start;
-    [SerializeField] Wazo _stop;
+    [SerializeField] Wazo wazo;
     [SerializeField] GameObject tuyaux;
-    [SerializeField] float time = 2;
+    [SerializeField] float timeBetween = 2;
     [SerializeField] float randomMin;
     [SerializeField] float randomMax;
+    bool isDivided = true;
+
     void Start()
     {
         _start.OnStart += StartSpawnTuyaux;
-        //_stop.OnDeath += StopSpawnTuyaux; //event mort du joueur
+
     }
-    //commence le spawn de tuyaux
-    void StartSpawnTuyaux()
+
+    void Update()
+    {
+        if (isDivided)
+        {
+            if (wazo.score == 20)
+            {
+                AudioManager.Instance.PlayLevel();
+                timeBetween /= 1.5f;
+                isDivided = false;
+            }
+        }
+    }
+
+    void StartSpawnTuyaux() // commence le spawn de tuyaux
     {
         StartCoroutine("SpawnTuyaux");
     }
 
-    //stoppe le spawn de tuayx
-    /*void StopSpawnTuyaux()
-    {
-        StopCoroutine("SpawnTuyaux");
-    }*/
-
-    //coroutine spawn des tuyaux
-    IEnumerator SpawnTuyaux()
+    IEnumerator SpawnTuyaux() //coroutine spawn des tuyaux
     {
         Instantiate(tuyaux, new Vector2(this.transform.position.x,Random.Range(randomMin,randomMax)), this.transform.rotation);
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(timeBetween);
         StartSpawnTuyaux();
     }
 }
