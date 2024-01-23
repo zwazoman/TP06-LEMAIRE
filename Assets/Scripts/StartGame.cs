@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-    GameObject startText;
+    [SerializeField] GameObject startText;
     public event Action OnStart;
-    void Start()
+    void Update()
     {
         if (Input.GetKeyDown("space"))
         {
