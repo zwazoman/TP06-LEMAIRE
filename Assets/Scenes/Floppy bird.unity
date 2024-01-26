@@ -699,7 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b62b92a1e8822468caefc78aa90d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rd: {fileID: 443643584}
+  rb: {fileID: 443643584}
   jumpPower: 10
   scoreText: {fileID: 2132659610}
   paneLose: {fileID: 486869434}
@@ -1599,6 +1599,7 @@ MonoBehaviour:
   _start: {fileID: 1603975858}
   wazo: {fileID: 443643587}
   tuyaux: {fileID: 3157872382962272840, guid: c918a0b6f1879264a815c7432ff992b2, type: 3}
+  mainCamera: {fileID: 519420031}
   timeBetween: 2
   randomMin: -5
   randomMax: 5

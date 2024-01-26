@@ -9,8 +9,8 @@ public class RestartGame : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene(0);
+            Time.timeScale = 1; // dé-pause le temps 
+            SceneManager.LoadScene(0); // reload la scene 
         }
     }
 }

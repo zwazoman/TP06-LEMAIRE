@@ -7,7 +7,7 @@ public class Score : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.SendMessage("ScoreUp");
+        collision.gameObject.SendMessage("ScoreUp"); // envoie le message "ScoreUp" à l'objet entrant dans le trigger
     }
 
 }
